@@ -6,6 +6,7 @@ import Contact from "../../Pages/Contact/Contact";
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/Login/Login";
 import Reviews from "../../Pages/Reviews/Reviews";
+import notFound from "../../Assets/images/not_found.png";
 
 const router = createBrowserRouter([
     {
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
     },
     {
         path: "*",
-        element: <h1>404 Not Found</h1>,
+        element: <img className="max-h-screen m-auto p-12" src={notFound} alt="" />,
     },
 ]);
 
