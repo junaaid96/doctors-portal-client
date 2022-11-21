@@ -21,7 +21,7 @@ const MakeAppointment = () => {
                         <h4 className="text-lg text-primary font-bold">
                             Appointment
                         </h4>
-                        <h1 className=" text-white text-4xl font-bold">
+                        <h1 className="text-white text-4xl font-bold">
                             Make an appointment Today
                         </h1>
                         <p className="text-white py-6">
