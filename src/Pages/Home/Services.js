@@ -1,21 +1,43 @@
 import React from "react";
-import cravity from "../../Assets/images/cavity.png";
+import cavity from "../../Assets/images/cavity.png";
 import fluoride from "../../Assets/images/fluoride.png";
 import whitening from "../../Assets/images/whitening.png";
 
 const Services = () => {
-    const images = [cravity, fluoride, whitening];
+    const servicesData = [
+        {
+            id: 1,
+            title: "Fluoride Treatment",
+            description:
+                "Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the",
+            img: fluoride,
+        },
+        {
+            id: 2,
+            title: "Cavity Filling",
+            description:
+                "Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the",
+            img: cavity,
+        },
+        {
+            id: 3,
+            title: "Teeth Whitening",
+            description:
+                "Lorem Ipsum is simply dummy printing and typesetting indust Ipsum has been the",
+            img: whitening,
+        },
+    ];
 
     return (
         <>
-            {images.map((image, index) => (
+            {servicesData.map((serviceData, index) => (
                 <div key={index} className="card w-96 bg-base-100 shadow-xl">
                     <figure>
-                        <img src={image} alt=""></img>
+                        <img className="pt-6" src={serviceData.img} alt=""></img>
                     </figure>
-                    <div className="card-body">
-                        <h2 className="card-title">Shoes!</h2>
-                        <p>If a dog chews shoes whose shoes does he choose?</p>
+                    <div className="card-body items-center text-center">
+                        <h2 className="card-title">{serviceData.title}</h2>
+                        <p>{serviceData.description}</p>
                     </div>
                 </div>
             ))}

@@ -1,5 +1,7 @@
 import React from "react";
-import { FaClock, FaLocationArrow, FaPhone } from "react-icons/fa";
+import clock from "../../../Assets/icons/clock.svg";
+import marker from "../../../Assets/icons/marker.svg";
+import phone from "../../../Assets/icons/phone.svg";
 
 const Info = () => {
     const infoData = [
@@ -8,21 +10,24 @@ const Info = () => {
             title: "Opening Hours",
             description:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-            icon: <FaClock size={60} />,
+            icon: clock,
+            bgClass: "bg-gradient-to-r from-primary to-secondary",
         },
         {
             id: 2,
             title: "Visit Our Location",
             description:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-            icon: <FaLocationArrow size={60} />,
+            icon: marker,
+            bgClass: "bg-accent text-white",
         },
         {
             id: 3,
             title: "Contact Us Now",
             description:
                 "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quod.",
-            icon: <FaPhone size={60} />,
+            icon: phone,
+            bgClass: "bg-gradient-to-r from-primary to-secondary",
         },
     ];
 
@@ -31,9 +36,11 @@ const Info = () => {
             {infoData.map((info) => (
                 <div
                     key={info.id}
-                    className="w-96 bg-primary shadow-xl flex items-center align-middle rounded-xl gap-1"
+                    className={`card lg:card-side ${info.bgClass} shadow-xl items-center`}
                 >
-                    <div className="ml-5">{info.icon}</div>
+                    <figure className="p-5">
+                        <img src={info.icon} alt=""/>
+                    </figure>
                     <div className="card-body">
                         <h2 className="card-title">{info.title}</h2>
                         <p>{info.description}</p>
