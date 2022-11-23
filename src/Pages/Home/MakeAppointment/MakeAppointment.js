@@ -1,6 +1,7 @@
 import React from "react";
 import doctor from "../../../Assets/images/doctor.png";
 import appointment from "../../../Assets/images/appointment.png";
+import { Link } from "react-router-dom";
 
 const MakeAppointment = () => {
     return (
@@ -34,9 +35,11 @@ const MakeAppointment = () => {
                             English. Many desktop publishing packages and web
                             page
                         </p>
-                        <button className="btn btn-primary bg-gradient-to-r from-primary to-secondary">
-                            Appointment
-                        </button>
+                        <Link to="/appointment">
+                            <button className="btn btn-primary bg-gradient-to-r from-primary to-secondary">
+                                Appointment
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>

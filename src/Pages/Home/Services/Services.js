@@ -1,7 +1,7 @@
 import React from "react";
-import cavity from "../../Assets/images/cavity.png";
-import fluoride from "../../Assets/images/fluoride.png";
-import whitening from "../../Assets/images/whitening.png";
+import cavity from "../../../Assets/images/cavity.png";
+import fluoride from "../../../Assets/images/fluoride.png";
+import whitening from "../../../Assets/images/whitening.png";
 
 const Services = () => {
     const servicesData = [

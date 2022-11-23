@@ -1,9 +1,9 @@
 import React from "react";
-import MakeAppointment from "./MakeAppointment/MakeAppointment";
-import Banner from "./Banner/Banner";
-import Info from "./Info/Info";
-import Services from "./Services";
-import Testimonial from "./Testimonial/Testimonial";
+import MakeAppointment from "../MakeAppointment/MakeAppointment";
+import Banner from "../Banner/Banner";
+import Info from "../Info/Info";
+import Testimonial from "../Testimonial/Testimonial";
+import Services from "../Services/Services";
 
 const Home = () => {
     return (
