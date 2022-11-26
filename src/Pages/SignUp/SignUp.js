@@ -27,13 +27,36 @@ const SignUp = () => {
                 };
                 updateUser(userInfo)
                     .then(() => {
-                        navigate("/");
+                        fetch("http://localhost:5000/users", {
+                            method: "POST",
+                            headers: { "content-type": "application/json" },
+                            body: JSON.stringify({
+                                ...userInfo,
+                                email: user.email,
+                                photoURL: data.photoURL,
+                            })
+                            .then((res) => res.json())
+                            .then((data) => {
+                                getUserToken(user.email);
+                            })
+                        });
                     })
                     .catch((err) => console.log(err));
             })
             .catch((error) => {
                 console.log(error);
                 setSignUPError(error.message);
+            });
+    };
+
+    const getUserToken = (email) => {
+        fetch(`http://localhost:5000/jwt?email=${email}`)
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.accessToken) {
+                    localStorage.setItem("accessToken", data.accessToken);
+                    navigate("/");
+                }
             });
     };
 
@@ -106,6 +129,25 @@ const SignUp = () => {
                             </p>
                         )}
                     </div>
+                    <div className="form-control w-full max-w-xs">
+                        <label className="label">
+                            {" "}
+                            <span className="label-text">PhotoURL</span>
+                        </label>
+                        <input
+                            type="text"
+                            {...register("photoURL", {
+                                required: "photoURL is Required",
+                            })}
+                            className="input input-bordered w-full max-w-xs"
+                        />
+                        {errors.photoURL && (
+                            <p className="text-red-500">
+                                {errors.photoURL.message}
+                            </p>
+                        )}
+                    </div>
+
                     <input
                         className="btn btn-accent w-full mt-4"
                         value="Sign Up"

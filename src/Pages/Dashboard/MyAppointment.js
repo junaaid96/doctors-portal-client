@@ -2,16 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { AuthContext } from "../../Contexts/AuthProvider";
 import Loading from "../Shared/Loading/Loading";
-import BookingTable from "./BookingTable";
+import BookingTableRow from "./BookingTableRow";
 
 const MyAppointment = () => {
     const { user } = useContext(AuthContext);
 
-    const { data: bookings = [], isLoading } = useQuery({
-        queryKey: ["bookings", user?.email],
+    const { data: users = [], isLoading: isLoadingUsers } = useQuery({
+        queryKey: ["users", user?.email],
         queryFn: async () => {
             const res = await fetch(
-                `http://localhost:5000/bookings?email=${user?.email}`
+                `http://localhost:5000/users?email=${user?.email}`
             );
 
             const data = await res.json();
@@ -19,7 +19,27 @@ const MyAppointment = () => {
         },
     });
 
-    if (isLoading) {
+    const { data: bookings = [], isLoading } = useQuery({
+        queryKey: ["bookings", user?.email],
+        queryFn: async () => {
+            const res = await fetch(
+                `http://localhost:5000/bookings?email=${user?.email}`,
+                {
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem(
+                            "accessToken"
+                        )}`,
+                    },
+                }
+            );
+
+            const data = await res.json();
+            console.log(data);
+            return data;
+        },
+    });
+
+    if (isLoading || isLoadingUsers) {
         return <Loading></Loading>;
     }
 
@@ -36,10 +56,11 @@ const MyAppointment = () => {
                     </tr>
                 </thead>
                 {bookings.map((booking) => (
-                    <BookingTable
+                    <BookingTableRow
                         key={booking._id}
                         booking={booking}
-                    ></BookingTable>
+                        users={users}
+                    ></BookingTableRow>
                 ))}
             </table>
         </div>

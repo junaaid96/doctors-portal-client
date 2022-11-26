@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import React, { useContext } from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../Contexts/AuthProvider";
 
 const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
@@ -87,6 +88,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
                         <input
                             name="name"
                             type="text"
+                            placeholder="Name"
                             defaultValue={user?.displayName}
                             readOnly
                             className="input w-full input-bordered"
@@ -94,6 +96,7 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
                         <input
                             name="email"
                             type="email"
+                            placeholder="Email"
                             defaultValue={user?.email}
                             readOnly
                             className="input w-full input-bordered"
@@ -105,11 +108,25 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
                             className="input w-full input-bordered"
                         />
                         <br />
-                        <input
-                            className="btn btn-accent w-full"
-                            type="submit"
-                            value="Submit"
-                        />
+                        
+                        {user ? (
+                            <input
+                                className={"btn btn-accent"}
+                                type="submit"
+                                value="Submit"
+                            />
+                        ) : (
+                            <p className="text-center">
+                                Please{" "}
+                                <Link
+                                    to="/login"
+                                    className="font-bold text-primary"
+                                >
+                                    Login
+                                </Link>{" "}
+                                for booking appointment!
+                            </p>
+                        )}
                     </form>
                 </div>
             </div>
