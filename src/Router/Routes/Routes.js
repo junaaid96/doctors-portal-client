@@ -9,7 +9,8 @@ import notFound from "../../Assets/images/not_found.png";
 import SignUp from "../../Pages/SignUp/SignUp";
 import Home from "../../Pages/Home/Home/Home";
 import PrivateRoute from "../PrivateRoutes/PrivateRoute";
-import Dashboard from "../../Pages/Dashboard/Dashboard";
+import DashboardLayout from "../../Layout/DashboardLayout";
+import MyAppointment from "../../Pages/Dashboard/MyAppointment";
 
 const router = createBrowserRouter([
     {
@@ -50,9 +51,15 @@ const router = createBrowserRouter([
         path: "/dashboard",
         element: (
             <PrivateRoute>
-                <Dashboard></Dashboard>
+                <DashboardLayout />
             </PrivateRoute>
         ),
+        children: [
+            {
+                path: "/dashboard",
+                element: <MyAppointment />,
+            },
+        ],
     },
     {
         path: "*",
